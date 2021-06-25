@@ -7,7 +7,7 @@ onready var plugin = get_tree().get_root().get_node("EditorNode").get_node("Lazy
 
 
 func _ready():
-	if plugin.is_enabled(): # this stops the "tool" behaviour
+	if plugin && plugin.is_enabled(): # this stops the "tool" behaviour
 		
 		################### START HERE
 		print("The plugin is enabled!")
