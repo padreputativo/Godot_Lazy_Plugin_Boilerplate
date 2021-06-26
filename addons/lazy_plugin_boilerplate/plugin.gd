@@ -1,95 +1,102 @@
+tool
+extends "res://addons/lazy_plugin_boilerplate/config.gd"
+
+
 # This plugin has been done using the Lazy Plugin Boilerplate template from doradoro
 
-tool
-extends EditorPlugin
+### CREATES A DOCK
+# A class member to hold the dock during the plugin life cycle.
+var dock
 
-# Basic plugin information
-const PLUGIN_NAME = "Lazy Plugin Boilerplate" # Should be the same than Project/Project Settings/Plugins
-const PLUGIN_DIR = "lazy_plugin_boilerplate" # Should use underscores instead spaces
-const MIN_GODOT_VERSION_MAYOR = 3 # check https://semver.org/
-const MIN_GODOT_VERSION_MINOR = 0
-const MIN_GODOT_VERSION_PATCH = 0
+### CREATES A MAIN SCREEN PLUGIN
+const MainPanel = preload("res://addons/lazy_plugin_boilerplate/do not export Editor assets into games/editor_panel.tscn")
+var main_panel_instance
 
-# Plugin dependencies : Add the other plugin's directories wich this plugin needs to run properly
-# We cannot do version control yet
-const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
-
-# This will make sure that everything is ok before running scripts
-var is_properly_configured = null
-
-
-
-
-
-# Checks out the Docs : https://docs.godotengine.org/en/stable/tutorials/plugins/editor/making_plugins.html
-# Do not forget to check the Interface methods
 func _enter_tree():
 	self.set_name(PLUGIN_NAME)
 	
 	if is_enabled():
 		################### START HERE to create your plugin
 		print("Your plugin, "+PLUGIN_NAME+", is properly configured!")
+		
+		### CREATES A SINGLETON
+		add_autoload_singleton(PLUGIN_DIR, "res://addons/lazy_plugin_boilerplate/singleton.gd")
+		
+		### CREATES A CUSTOM TYPE
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/making_plugins.html
+		# Initialization of the plugin goes here.
+		# Add the new type with a name, a parent type, a script and an icon.
+		add_custom_type("MyButton", "Button", preload("res://addons/lazy_plugin_boilerplate/custom_type.gd"), preload("../../icon.png"))
+		
+		### CREATES A DOCK
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/making_plugins.html
+		# Initialization of the plugin goes here.
+		# Load the dock scene and instance it.
+		dock = preload("res://addons/lazy_plugin_boilerplate/do not export Editor assets into games/editor_panel.tscn").instance()
 
-# You need to delete here all what you created while your Plugin was running to clean the Editor
+		# Add the loaded scene to the docks.
+		add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
+		# Note that LEFT_UL means the left of the editor, upper-left dock.
+
+		### CREATES A MAIN SCREEN PANEL
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/making_main_screen_plugins.html
+		main_panel_instance = MainPanel.instance()
+		# Add the main panel to the editor's main viewport.
+		get_editor_interface().get_editor_viewport().add_child(main_panel_instance)
+		# Hide the main panel. Very much required.
+		make_visible(false)
+
+		### IMPORT PLUGIN
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/import_plugins.html
+
+		### GIZMO PLUGIN
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/spatial_gizmos.html
+
+		### INSPECTOR PLUGIN
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/inspector_plugins.html
+
+		### VISUAL SHADER PLUGIN
+		# https://docs.godotengine.org/en/stable/tutorials/plugins/editor/visual_shader_plugins.html
+
 func _exit_tree():
+	# Clean-up of the plugin goes here.
+	# Always remember to remove it from the engine when deactivated.
+
+
+	### REMOVE SINGLETON
+	remove_autoload_singleton(PLUGIN_NAME)
+
+	### REMOVE CUSTOM TYPE
+	remove_custom_type("MyButton")
+
+	### REMOVE DOCK
+	# Clean-up of the plugin goes here.
+	# Remove the dock.
+	remove_control_from_docks(dock)
+	# Erase the control from the memory.
+	dock.free()
+
+	### REMOVE MAIN SCREEN PANEL
+	if main_panel_instance:
+		main_panel_instance.queue_free()
+
 	pass
 
-# This is mainly for Main Scene plugins. You delete it.
-func get_plugin_name():
-	return PLUGIN_NAME
 
-# If you are going to use icons, check out the get_icon method. You can delete it
+### CREATING A MAIN SCREEN PLUGIN
+func has_main_screen():
+	return true
+
+
+func make_visible(visible):
+	if main_panel_instance:
+		main_panel_instance.visible = visible
+
+
+func get_plugin_name():
+	return "Main Screen Plugin"
+
+
 func get_plugin_icon():
 	# Must return some kind of Texture for the icon.
 	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
-
-
-
-
-
-## Exclusive Lazy Plugin Boilerplate methods ##
-
-# This will check if your plugin is properly configured
-func check_configuration():
-	is_properly_configured = false
-	
-	if self.name != PLUGIN_NAME: # checks if this is the first instance
-		error(self.name + " should be " + PLUGIN_NAME)
-	elif self.get_parent().get_class() != "EditorNode"  && self == get_tree().get_root().get_node("EditorNode").get_node(PLUGIN_NAME):
-		error("Parent should be an EditorNode")
-	elif not get_editor_interface().is_plugin_enabled(PLUGIN_DIR): # checks if the plugin is turned on
-		error("The plugin is not turned on!")
-	elif self.get_script().get_path().get_base_dir() != "res://addons/" + PLUGIN_DIR: # check if the plugin is properly located
-		error(self.get_script().get_path().get_base_dir() + " should be res://addons/" + PLUGIN_DIR)
-	elif Engine.get_version_info().major != MIN_GODOT_VERSION_MAYOR:
-		error(str(Engine.get_version_info().major) + " should be " + str(MIN_GODOT_VERSION_MAYOR))
-	elif Engine.get_version_info().minor <= MIN_GODOT_VERSION_MINOR:
-		error(str(Engine.get_version_info().minor) + " should be >= " + str(MIN_GODOT_VERSION_MINOR))
-	elif Engine.get_version_info().patch <= MIN_GODOT_VERSION_PATCH:
-		error(str(Engine.get_version_info().patch) + " should be >= " + str(MIN_GODOT_VERSION_PATCH))
-	else:
-		var passed = true
-		for plugin in REQUIRED_PLUGINS:
-			if not get_editor_interface().is_plugin_enabled(plugin):
-				passed = false
-				error(plugin + " plugin is required to run this plugin!")
-				break
-		
-		if passed:
-			is_properly_configured = true
-			return true
-	
-	is_properly_configured = false
-	return false
-
-# Checks if the plugin is enabled to be able to stop the "tool" autorun
-func is_enabled():
-	if is_properly_configured == null: check_configuration()
-	return is_properly_configured && get_editor_interface().is_plugin_enabled(PLUGIN_DIR)
-
-# This will ease and reduce the error reporting messages size
-func error(msg):
-	push_error(PLUGIN_NAME + " ERROR : " + msg)
-	
-func warning(msg):
-	push_warning(PLUGIN_NAME + " Warning : " + msg)
