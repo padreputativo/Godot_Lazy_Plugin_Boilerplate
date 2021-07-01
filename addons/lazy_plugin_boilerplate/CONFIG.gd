@@ -1,6 +1,5 @@
 extends EditorPlugin
 
-
 #############################
 #  Lazy Plugin Boilerplate  #
 #############################
@@ -8,10 +7,10 @@ extends EditorPlugin
 
 ###### STEP 1: Rename the plugin directory
 ###### STEP 2: Edit your plugin.cfg file going to Project / Project Settings / Plugins (Tab) / Edit
-###### STEP 3: Configure the this plugin's information
-const PLUGIN_NAME = "Lazy Plugin Boilerplate" # Should be the same than Project/Project Settings/Plugins
-const PLUGIN_DIR = "lazy_plugin_boilerplate" # Should use underscores instead spaces
-const ADDON_DIR = "res://addons/" + PLUGIN_DIR + "/" # Do not change this
+###### STEP 3: Configure this plugin's information
+const PLUGIN_NAME = "Lazy Plugin Boilerplate" # Should be the same as Project / Project Settings / Plugins
+const PLUGIN_DIR = "lazy_plugin_boilerplate" # Should use underscores instead of spaces
+const ADDON_DIR = "res://addons/" + PLUGIN_DIR + "/" # Do not change this line
 
 # Check https://semver.org/ to understand Semantic Versioning
 const MIN_GODOT_VERSION_MAYOR = 3
@@ -19,12 +18,12 @@ const MIN_GODOT_VERSION_MINOR = 0
 const MIN_GODOT_VERSION_PATCH = 0
 
 # Add your plugin dependencies
-# Use the other plugin's directories wich this plugin needs to run properly
+# Use the other plugin's directories which this plugin needs to run properly
 # We cannot do version control yet
 const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
 
 ###### STEP 4: Remove plugin.gd and use a Template file to create again your own plugin.gd
-# Right click in your plugin's directory and create New Script, select a Template, name it plugin.gd
+# Right clicks in your plugin's directory and create New Script, select a Template, name it plugin.gd
 
 ###### STEP 5: Code your plugin
 
@@ -40,8 +39,8 @@ const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
 #
 # What is 'do not export tools'?
 #
-# Do not Export is a future polyfill of a missing funcionality
-# For now Godot is not able to show and run directories without being exported in the final release
+# Do not Export is a future polyfill of a missing functionality
+# For now, Godot is not able to show and run directories without being exported in the final release
 # This directory name is created to made you think about this
 # Why a final release should have inside the Editor oriented assets?
 # I created this to made clear what parts of your plugin are 'exportable' and what are not
@@ -50,7 +49,7 @@ const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
 #
 # What is .gdignore?
 #
-# It is the actual (Godot 3.3) way to hide files but the files allocated there will not been shown
+# It is the actual (Godot 3.3) way to hide files, but the files allocated there will not been shown
 # in the Editor at all and either exported similar to other unrecognized files
 # This is why this information is stored here and not in a .txt
 
@@ -59,7 +58,7 @@ const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
 #
 # Lazy Plugin Boilerplate have the ability to be updated
 # and that is why you can download it again and update the core files
-# because eveything been split in different directories
+# because everything been split in different directories
 # So your plugin functionality will keep intact
 
 #
