@@ -30,12 +30,16 @@ func _exit_tree():
 
 func apply_changes():
 	warning("apply_changes()")
+	return true
 
 func _run():
 	warning("_run()")
+	return true
 
 func build():
 	warning("build()")
+	return true
 
 func save_external_data():
 	warning("save_external_data()")
+	return true

@@ -4,9 +4,7 @@ extends "boilerplate core/shared.lib.gd"
 
 ###############################
 #   Lazy Plugin Boilerplate   #
-# Please overwrite this file! #
 ###############################
-
 
 
 const MainPanel = preload("do not export tools/panel_example.tscn")
@@ -50,18 +48,22 @@ func get_plugin_icon():
 	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
 
 
-# Remove this if you does not need it
+# Remove all this if you does not need it
 func apply_changes():
 	warning("apply_changes()")
+	return true
 
 
 func _run():
 	warning("_run()")
+	return true
 
 
 func build():
 	warning("build()")
+	return true
 
 
 func save_external_data():
 	warning("save_external_data()")
+	return true

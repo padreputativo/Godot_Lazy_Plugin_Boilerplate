@@ -1,4 +1,4 @@
-extends "../CONFIG.gd"
+extends "../boilerplate.gd"
 
 
 #############################

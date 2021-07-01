@@ -1,10 +1,14 @@
-extends EditorPlugin
+extends "_CONFIG.gd"
 
 #############################
 #  Lazy Plugin Boilerplate  #
+#    Configuration  File    #
 #############################
 
 
+######
+###### WARNING!!! THIS FILE IS INTENDED FOR THE PLUGIN OWNER ONLY!
+######
 ###### STEP 1: Rename the plugin directory
 ###### STEP 2: Edit your plugin.cfg file going to Project / Project Settings / Plugins (Tab) / Edit
 ###### STEP 3: Configure this plugin's information
