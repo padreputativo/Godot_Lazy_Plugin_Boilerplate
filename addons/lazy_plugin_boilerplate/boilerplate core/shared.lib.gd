@@ -1,25 +1,15 @@
-
-tool
-extends EditorPlugin
+extends "../CONFIG.gd"
 
 
-# This plugin has been done using the Lazy Plugin Boilerplate template from doradoro
+#############################
+#  Lazy Plugin Boilerplate  #
+# PLEASE DO NOT MODIFY THIS #
+#############################
 
-# Basic plugin information
-const PLUGIN_NAME = "Lazy Plugin Boilerplate" # Should be the same than Project/Project Settings/Plugins
-const PLUGIN_DIR = "lazy_plugin_boilerplate" # Should use underscores instead spaces
-const MIN_GODOT_VERSION_MAYOR = 3 # check https://semver.org/
-const MIN_GODOT_VERSION_MINOR = 0
-const MIN_GODOT_VERSION_PATCH = 0
 
-# Plugin dependencies : Add the other plugin's directories wich this plugin needs to run properly
-# We cannot do version control yet
-const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
-
-# This will make sure that everything is ok before running scripts
 var is_properly_configured = null
 
-# This will check if your plugin is properly configured
+
 func check_configuration():
 	is_properly_configured = false
 	
@@ -52,14 +42,24 @@ func check_configuration():
 	is_properly_configured = false
 	return false
 
-# Checks if the plugin is enabled to be able to stop the "tool" autorun
-func is_enabled():
-	if is_properly_configured == null: check_configuration()
-	return is_properly_configured && get_editor_interface().is_plugin_enabled(PLUGIN_DIR)
 
-# This will ease and reduce the error reporting messages size
+func is_editor():
+	if is_properly_configured == null: check_configuration()
+	return is_properly_configured && Engine.is_editor_hint()
+
+
+func is_gameplay():
+	if is_properly_configured == null: check_configuration()
+	return is_properly_configured && !Engine.is_editor_hint()
+
+
 func error(msg):
-	push_error(PLUGIN_NAME + " ERROR : " + msg)
-	
+	return push_error(PLUGIN_NAME + " ERROR : " + msg)
+
+
 func warning(msg):
-	push_warning(PLUGIN_NAME + " Warning : " + msg)
+	return push_warning(PLUGIN_NAME + " Warning : " + msg)
+
+
+func notify(msg):
+	return print(PLUGIN_NAME + " : " + msg)

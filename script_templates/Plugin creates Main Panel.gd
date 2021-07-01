@@ -2,10 +2,9 @@ tool
 extends "boilerplate core/shared.lib.gd"
 
 
-###############################
-#   Lazy Plugin Boilerplate   #
-# Please overwrite this file! #
-###############################
+#############################
+#  Lazy Plugin Boilerplate  #
+#############################
 
 
 
@@ -38,8 +37,10 @@ func make_visible(visible):
 	if main_panel_instance:
 		main_panel_instance.visible = visible
 
+
 func has_main_screen():
 	return true
+
 
 func get_plugin_name():
 	return "Main Screen Plugin Name"
