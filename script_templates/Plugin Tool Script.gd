@@ -1,5 +1,5 @@
 tool
-extends Control
+extends %BASE%
 
 
 #############################
@@ -7,8 +7,9 @@ extends Control
 #############################
 
 
-onready var plugin = get_tree().get_root().get_node("EditorNode").get_node("YOUR PLUGIN NAME")
+onready var plugin = $"/root/lazy_plugin_boilerplate"
 
 func _ready():
-	if plugin && plugin.is_editor():
-		plugin.notify("The plugin tool is enabled properly!")
+	plugin.notify("The plugin's tool example is accessing to your singleton inside the Editor!")
+
+

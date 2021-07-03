@@ -13,7 +13,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Please, read the boilerplate.gd file!"
+text = "Please, read the boilerplate.gd file to know more!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

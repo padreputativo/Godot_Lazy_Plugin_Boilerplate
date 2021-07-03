@@ -11,10 +11,10 @@ extends "_CONFIG.gd"
 ######
 ###### STEP 1: Rename the plugin directory
 ###### STEP 2: Edit your plugin.cfg file going to Project / Project Settings / Plugins (Tab) / Edit
-###### STEP 3: Configure this plugin's information
-const PLUGIN_NAME = "Lazy Plugin Boilerplate" # Should be the same as Project / Project Settings / Plugins
-const PLUGIN_DIR = "lazy_plugin_boilerplate" # Should use underscores instead of spaces
-const ADDON_DIR = "res://addons/" + PLUGIN_DIR + "/" # Do not change this line
+###### STEP 3: Write your plugin's directory name
+const PLUGIN_NAME = "Lazy Plugin Boilerplate" # The name used in your plugin's messages
+const DIR_NAME = "lazy_plugin_boilerplate" # You MUST use underscores instead of spaces
+const ADDON_DIR = "res://addons/" + DIR_NAME + "/" # Do not change this line
 
 # Check https://semver.org/ to understand Semantic Versioning
 const MIN_GODOT_VERSION_MAYOR = 3
@@ -24,19 +24,23 @@ const MIN_GODOT_VERSION_PATCH = 0
 # Add your plugin dependencies
 # Use the other plugin's directories which this plugin needs to run properly
 # We cannot do version control yet
-const REQUIRED_PLUGINS = [PLUGIN_DIR, "lazy_plugin_boilerplate"]
+const REQUIRED_PLUGINS_DIR_NAMES = [DIR_NAME, "lazy_plugin_boilerplate"]
 
 ###### STEP 4: Remove plugin.gd and use a Template file to create again your own plugin.gd
 # Right clicks in your plugin's directory and create New Script, select a Template, name it plugin.gd
 
-###### STEP 5: Code your plugin
+###### STEP 5: Code your singleton.gd to share information all over your scripts
 
-###### STEP 6: Create another Template: tool, singleton...
+###### STEP 6: Create another editor's tool file using a Template File
 
-###### STEP 7: Delete all files having names finishing in '_example.gd'
+###### STEP 7: Use the _CONFIG.gd to offer configuration constants to your users
+
+###### STEP 8: Delete all files having names finishing in '_example.gd'
 # Those are located inside 'do not export tools' and 'export ingame scripts'
 
-###### STEP 8: Finish your plugin, upload it to the Asset Library and be happy for ever and ever
+###### STEP 9: Upload it to the Godot Asset Library
+
+###### STEP 10: Be happy for ever and ever
 
 
 ###### DETAILED INFORMATION

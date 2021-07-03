@@ -7,7 +7,10 @@ extends Button
 #############################
 
 
-onready var plugin = get_tree().get_root().get_node("EditorNode").get_node("Lazy Plugin Boilerplate")
+onready var plugin = $"/root/lazy_plugin_boilerplate"
+
+func _ready():
+	plugin.notify("The plugin's custom type example tool is accessing to your singleton inside the Editor!")
 
 
 func _enter_tree():

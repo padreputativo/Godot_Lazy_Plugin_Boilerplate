@@ -1,4 +1,4 @@
-extends EditorPlugin
+extends Node
 
 ########################
 #  YOUR PLUGIN'S NAME  #
@@ -6,7 +6,7 @@ extends EditorPlugin
 ########################
 
 
-###### YOUR PLUGIN'S INSTRUCTIONS
-
 ###### YOUR PLUGIN'S CONFIGURATION CONSTANTS
 
+
+###### YOUR PLUGIN'S INSTRUCTIONS
