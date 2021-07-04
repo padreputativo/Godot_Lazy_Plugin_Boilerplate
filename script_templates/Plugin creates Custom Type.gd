@@ -11,7 +11,7 @@ var dock
 
 
 func deferred_enter_tree():
-	# You have some extra methods: notify(string), warning(string), error(string), is_editor() -> bool, is_gameplay() -> bool
+	# You have some extra methods: singleton.notify(string), singleton.warning(string), singleton.error(string)
 
 	##### START HERE #####
 

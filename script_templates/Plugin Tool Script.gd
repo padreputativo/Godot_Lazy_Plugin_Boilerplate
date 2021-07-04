@@ -7,9 +7,10 @@ extends %BASE%
 #############################
 
 
-onready var plugin = $"/root/lazy_plugin_boilerplate"
+onready var singleton = $"/root/lazy_plugin_boilerplate"
 
 func _ready():
-	plugin.notify("The plugin's tool example is accessing to your singleton inside the Editor!")
+	# You have some extra methods: singleton.notify(string), singleton.warning(string), singleton.error(string)
+	singleton.notify("The plugin's tool example is accessing to your singleton inside the Editor!")
 
 

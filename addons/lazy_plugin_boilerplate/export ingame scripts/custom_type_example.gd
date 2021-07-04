@@ -7,10 +7,11 @@ extends Button
 #############################
 
 
-onready var plugin = $"/root/lazy_plugin_boilerplate"
+onready var singleton = $"/root/lazy_plugin_boilerplate"
 
 func _ready():
-	plugin.notify("The plugin's custom type example tool is accessing to your singleton inside the Editor!")
+	# You have some extra methods: singleton.notify(string), singleton.warning(string), singleton.error(string)
+	singleton.notify("The plugin's custom type example tool is accessing to your singleton inside the Editor!")
 
 
 func _enter_tree():
