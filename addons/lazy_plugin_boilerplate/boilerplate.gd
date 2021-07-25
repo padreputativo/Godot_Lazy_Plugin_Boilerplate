@@ -11,9 +11,9 @@ extends "_CONFIG.gd"
 ######
 ###### STEP 1: Rename the plugin directory
 ###### STEP 2: Edit your plugin.cfg file going to Project / Project Settings / Plugins (Tab) / Edit
-###### STEP 3: Write your plugin's directory name
+###### STEP 3: Configure the plugin here:
 const PLUGIN_NAME = "Lazy Plugin Boilerplate" # The name used in your plugin's messages
-const DIR_NAME = "lazy_plugin_boilerplate" # You MUST use underscores instead of spaces
+const DIR_NAME = "lazy_plugin_boilerplate" # You MUST use underscores instead of spaces and use lower case = snake_case
 const ADDON_DIR = "res://addons/" + DIR_NAME + "/" # Do not change this line
 
 # Check https://semver.org/ to understand Semantic Versioning
@@ -30,6 +30,8 @@ const REQUIRED_PLUGINS_DIR_NAMES = [DIR_NAME, "lazy_plugin_boilerplate"]
 # Right clicks in your plugin's directory and create New Script, select a Template, name it plugin.gd
 
 ###### STEP 5: Code your singleton.gd to share information all over your scripts
+
+const AUTOLOAD_SINGLETON = true # This will AutoLoad your singleton.gd scripts into your gameplay
 
 ###### STEP 6: Create another editor's tool file using a Template File
 
